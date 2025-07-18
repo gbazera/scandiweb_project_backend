@@ -1,5 +1,12 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+
+if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    exit(0);
+}
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
