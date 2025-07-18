@@ -56,6 +56,10 @@ class GraphQL {
             $queryType = new ObjectType([
                 'name' => 'Query',
                 'fields' => [
+                    'categories' => [
+                        'type' => Type::listOf(Types::category()),
+                        'resolve' => static fn() => Category::fetchAll($db)
+                    ],
                     'category' => [
                         'type' => Types::category(),
                         'args' => [
