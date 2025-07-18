@@ -26,13 +26,24 @@ class Category{
 
         if($category){
 
-            $productStmt = $db->prepare("
-                SELECT p.*, c.name AS category_name
-                FROM products p
-                JOIN categories c ON p.category_id = c.id
-                WHERE p.category_id = ?
-            ");
-            $productStmt->bind_param("i", $category['id']);
+            $rawProduct = [];
+
+            if($name === 'all'){
+                $productStmt = $db->prepare("
+                    SELECT p.*, c.name AS category_name
+                    FROM products p
+                    JOIN categories c ON p.category_id = c.id
+                ");
+            }else{
+                $productStmt = $db->prepare("
+                    SELECT p.*, c.name AS category_name
+                    FROM products p
+                    JOIN categories c ON p.category_id = c.id
+                    WHERE p.category_id = ?
+                ");
+                $productStmt->bind_param("i", $category['id']);
+            }
+
             $productStmt->execute();
             $rawProducts = $productStmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
