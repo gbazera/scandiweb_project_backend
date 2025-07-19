@@ -26,6 +26,10 @@ class AttributeType extends ObjectType{
                     'type' => Type::nonNull(Type::string()),
                     'resolve' => fn(Attribute $attr) => $attr->getType()
                 ],
+                'items' => [
+                    'type' => Type::listOf(new AttributeItemType()),
+                    'resolve' => fn(Attribute $attr) => $attr->getItems()
+                ]
             ],
         ];
 
