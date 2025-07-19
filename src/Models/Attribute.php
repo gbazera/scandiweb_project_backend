@@ -22,7 +22,7 @@ abstract class Attribute{
 
     private function fetchItems(mysqli $db): void{
 
-        $stmt = $db->prepare("SELECT value, display_value FROM attribute_items WHERE attribute_id = ?");
+        $stmt = $db->prepare("SELECT id, value, display_value FROM attribute_items WHERE attribute_id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
         $result = $stmt->get_result();
