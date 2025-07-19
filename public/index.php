@@ -1,5 +1,7 @@
 <?php
 
+use Dotenv\Dotenv;
+
 header("Access-Control-Allow-Origin: *");
 
 if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -8,6 +10,9 @@ if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->post('/graphql', [App\Controller\GraphQL::class, 'handle']);
