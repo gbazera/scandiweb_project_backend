@@ -1,0 +1,4 @@
+
+[phases.setup]
+# Add 'mysqli' to the list of required PHP extensions
+nixPkgs = ["pkgs.php83Extensions.mysqli"]
