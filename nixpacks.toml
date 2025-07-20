@@ -1,3 +1,2 @@
 [phases.setup]
-# Add composer to the list of packages to install
-nixPkgs = ["pkgs.php83Extensions.mysqli", "pkgs.php83Packages.composer"]
+nixPkgs = ["pkgs.php83", "pkgs.php83Extensions.mysqli", "pkgs.php83Packages.composer"]
